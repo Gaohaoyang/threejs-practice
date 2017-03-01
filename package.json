@@ -10,5 +10,8 @@
     "three.js"
   ],
   "author": "HyG",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "webpack": "^2.2.1"
+  }
 }
