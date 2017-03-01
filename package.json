@@ -1,0 +1,14 @@
+{
+  "name": "threejs-practice",
+  "version": "0.0.1",
+  "description": "learn three.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "three.js"
+  ],
+  "author": "HyG",
+  "license": "MIT"
+}
