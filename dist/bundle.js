@@ -43374,11 +43374,37 @@ function CanvasRenderer() {
 
 var THREE = __webpack_require__(0);
 
-var init = function init() {
+// 坐标轴
+var drawAxes = function drawAxes(scene) {
+  // x-axis
+  var xGeo = new THREE.Geometry();
+  xGeo.vertices.push(new THREE.Vector3(0, 0, 0));
+  xGeo.vertices.push(new THREE.Vector3(40, 0, 0));
+  var xMat = new THREE.LineBasicMaterial({ color: 0xff0000 });
+  var xAxis = new THREE.Line(xGeo, xMat);
+  scene.add(xAxis);
 
+  // y-axis
+  var yGeo = new THREE.Geometry();
+  yGeo.vertices.push(new THREE.Vector3(0, 0, 0));
+  yGeo.vertices.push(new THREE.Vector3(0, 40, 0));
+  var yMat = new THREE.LineBasicMaterial({ color: 0x00ff00 });
+  var yAxis = new THREE.Line(yGeo, yMat);
+  scene.add(yAxis);
+
+  // z-axis
+  var zGeo = new THREE.Geometry();
+  zGeo.vertices.push(new THREE.Vector3(0, 0, 0));
+  zGeo.vertices.push(new THREE.Vector3(0, 0, 40));
+  var zMat = new THREE.LineBasicMaterial({ color: 0x00ccff });
+  var zAxis = new THREE.Line(zGeo, zMat);
+  scene.add(zAxis);
+};
+
+var init = function init() {
   // renderer
   var renderer = new THREE.WebGLRenderer();
-  renderer.setSize(400, 300);
+  renderer.setSize(800, 600);
   renderer.setClearColor(0x000000);
   document.body.appendChild(renderer.domElement);
 
@@ -43386,20 +43412,52 @@ var init = function init() {
   var scene = new THREE.Scene();
 
   // camera
-  // const camera = new THREE.PerspectiveCamera(45, 4 / 3, 1, 1000);
-  // camera.position.set(0, 0, 5);
-  // scene.add(camera);
-
-  var camera = new THREE.PerspectiveCamera(45, 400 / 300, 1, 10);
-  camera.position.set(0, 0, 5);
+  // const camera = new THREE.OrthographicCamera(-100, 100, 75, -75, 0.1, 200);
+  var camera = new THREE.PerspectiveCamera(45, 4 / 3, 1, 1000);
+  camera.position.set(120, 50, 100);
+  camera.lookAt(new THREE.Vector3(0, 0, 0));
   scene.add(camera);
 
-  // a cube in the scene
-  var cube = new THREE.Mesh(new THREE.CubeGeometry(1, 1, 1), new THREE.MeshBasicMaterial({
-    color: 0xff0000,
+  // draw axes to help you understand the coordinate
+  // drawAxes(scene);
+
+  // 材质
+  var material = new THREE.MeshLambertMaterial({
+    color: 0xffff00,
     wireframe: true
-  }));
-  scene.add(cube);
+  });
+
+  // 光源
+  var light = new THREE.DirectionalLight();
+  light.position.set(2, 5, 3);
+  scene.add(light);
+
+  // 车体
+  var carBody = new THREE.BoxGeometry(80, 50, 50, 10, 10, 5);
+  var carBodyWithMaterial = new THREE.Mesh(carBody, material);
+  scene.add(carBodyWithMaterial);
+
+  // 轮子
+  var wheel = new THREE.TorusGeometry(8, 3, 10, 20);
+  var wheelWithMaterial = new THREE.Mesh(wheel, material);
+  wheelWithMaterial.position.set(-25, -25, 25);
+  scene.add(wheelWithMaterial);
+
+  var wheel2 = new THREE.TorusGeometry(8, 3, 10, 20);
+  var wheel2WithMaterial = new THREE.Mesh(wheel2, material);
+  wheel2WithMaterial.position.set(-25, -25, -25);
+  scene.add(wheel2WithMaterial);
+
+  var wheel3 = new THREE.TorusGeometry(8, 3, 10, 20);
+  var wheel3WithMaterial = new THREE.Mesh(wheel3, material);
+  wheel3WithMaterial.position.set(25, -25, -25);
+  scene.add(wheel3WithMaterial);
+
+  var wheel4 = new THREE.TorusGeometry(8, 3, 10, 20);
+  var wheel4WithMaterial = new THREE.Mesh(wheel4, material);
+  wheel4WithMaterial.position.set(25, -25, 25);
+  scene.add(wheel4WithMaterial);
+
   renderer.render(scene, camera);
 };
 
