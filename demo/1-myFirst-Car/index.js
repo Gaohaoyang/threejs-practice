@@ -50,7 +50,7 @@ const init = () => {
   // 材质
   const material = new THREE.MeshLambertMaterial({
     color: 0xffff00,
-    // wireframe: true
+    wireframe: true
   });
 
   // 光源
