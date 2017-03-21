@@ -41,7 +41,7 @@ const init = () => {
 
   // camera
   // const camera = new THREE.OrthographicCamera(-100, 100, 75, -75, 0.1, 200);
-  const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 1000);
+  const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
   camera.position.set(120, 50, 100);
   camera.lookAt(new THREE.Vector3(0, 0, 0));
   scene.add(camera);
@@ -50,14 +50,9 @@ const init = () => {
   // drawAxes(scene);
 
   // 材质
-  // const material = new THREE.MeshLambertMaterial({
-  //   color: 0xffff00,
-  //   // wireframe: true
-  // });
-  const material = new THREE.MeshPhongMaterial({
-    color: 0xff0000,
-    specular: 0xffff00,
-    shininess: 100
+  const material = new THREE.MeshLambertMaterial({
+    color: 0xffff00,
+    // wireframe: true
   });
 
   // 光源
