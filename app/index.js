@@ -1,39 +1,14 @@
 import './index.scss';
+import Axes from './Axes';
 
 const THREE = require('three');
-
-// 坐标轴
-const drawAxes = (scene) => {
-  // x-axis
-  const xGeo = new THREE.Geometry();
-  xGeo.vertices.push(new THREE.Vector3(0, 0, 0));
-  xGeo.vertices.push(new THREE.Vector3(40, 0, 0));
-  const xMat = new THREE.LineBasicMaterial({ color: 0xff0000 });
-  const xAxis = new THREE.Line(xGeo, xMat);
-  scene.add(xAxis);
-
-  // y-axis
-  const yGeo = new THREE.Geometry();
-  yGeo.vertices.push(new THREE.Vector3(0, 0, 0));
-  yGeo.vertices.push(new THREE.Vector3(0, 40, 0));
-  const yMat = new THREE.LineBasicMaterial({ color: 0x00ff00 });
-  const yAxis = new THREE.Line(yGeo, yMat);
-  scene.add(yAxis);
-
-  // z-axis
-  const zGeo = new THREE.Geometry();
-  zGeo.vertices.push(new THREE.Vector3(0, 0, 0));
-  zGeo.vertices.push(new THREE.Vector3(0, 0, 40));
-  const zMat = new THREE.LineBasicMaterial({ color: 0x00ccff });
-  const zAxis = new THREE.Line(zGeo, zMat);
-  scene.add(zAxis);
-};
 
 const init = () => {
   // renderer
   const renderer = new THREE.WebGLRenderer();
   renderer.setSize(window.innerWidth, window.innerHeight);
   renderer.setClearColor(0x000000);
+  renderer.shadowMap.enabled = true;
   document.body.appendChild(renderer.domElement);
 
   // scene
@@ -47,44 +22,58 @@ const init = () => {
   scene.add(camera);
 
   // draw axes to help you understand the coordinate
-  // drawAxes(scene);
+  Axes.drawAxes(scene);
 
   // 材质
   const material = new THREE.MeshLambertMaterial({
-    color: 0xffff00,
+    color: 0x999999,
     // wireframe: true
   });
-
-  // 光源
-  const light = new THREE.DirectionalLight();
-  light.position.set(2, 5, 3);
-  scene.add(light);
 
   // 车体
   const carBody = new THREE.BoxGeometry(80, 50, 50, 10, 10, 5);
   const carBodyWithMaterial = new THREE.Mesh(carBody, material);
+  carBodyWithMaterial.castShadow = true; //default is false
   scene.add(carBodyWithMaterial);
 
   // 轮子
   const wheel = new THREE.TorusGeometry(8, 3, 10, 20);
   const wheelWithMaterial = new THREE.Mesh(wheel, material);
   wheelWithMaterial.position.set(-25, -25, 25);
+  wheelWithMaterial.castShadow = true; //default is false
   scene.add(wheelWithMaterial);
 
   const wheel2 = new THREE.TorusGeometry(8, 3, 10, 20);
   const wheel2WithMaterial = new THREE.Mesh(wheel2, material);
   wheel2WithMaterial.position.set(-25, -25, -25);
+  wheel2WithMaterial.castShadow = true; //default is false
   scene.add(wheel2WithMaterial);
 
   const wheel3 = new THREE.TorusGeometry(8, 3, 10, 20);
   const wheel3WithMaterial = new THREE.Mesh(wheel3, material);
   wheel3WithMaterial.position.set(25, -25, -25);
+  wheel3WithMaterial.castShadow = true; //default is false
   scene.add(wheel3WithMaterial);
 
   const wheel4 = new THREE.TorusGeometry(8, 3, 10, 20);
   const wheel4WithMaterial = new THREE.Mesh(wheel4, material);
   wheel4WithMaterial.position.set(25, -25, 25);
+  wheel4WithMaterial.castShadow = true; //default is false
   scene.add(wheel4WithMaterial);
+
+  // 地平面
+  const ground = new THREE.PlaneGeometry(300, 300);
+  const groundWithMaterial = new THREE.Mesh(ground, material);
+  groundWithMaterial.rotation.x = -Math.PI / 2;
+  groundWithMaterial.position.y = -33.5;
+  ground.receiveShadow = true;
+  scene.add(groundWithMaterial);
+
+  // 光源
+  const light = new THREE.DirectionalLight();
+  light.position.set(2, 5, 3);
+  scene.add(light);
+
 
   renderer.render(scene, camera);
 };
