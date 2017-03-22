@@ -63,106 +63,11 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 12);
+/******/ 	return __webpack_require__(__webpack_require__.s = 13);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(10);
-if(typeof content === 'string') content = [[module.i, content, '']];
-// add the styles to the DOM
-var update = __webpack_require__(3)(content, {});
-if(content.locals) module.exports = content.locals;
-// Hot Module Replacement
-if(false) {
-	// When the styles change, update the <style> tags
-	if(!content.locals) {
-		module.hot.accept("!!../node_modules/css-loader/index.js!../node_modules/.6.0.3@sass-loader/lib/loader.js!./index.scss", function() {
-			var newContent = require("!!../node_modules/css-loader/index.js!../node_modules/.6.0.3@sass-loader/lib/loader.js!./index.scss");
-			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-			update(newContent);
-		});
-	}
-	// When the module is disposed, remove the <style> tags
-	module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 1 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-var THREE = __webpack_require__(2);
-
-var Axes = function () {
-  function Axes() {
-    _classCallCheck(this, Axes);
-  }
-
-  _createClass(Axes, null, [{
-    key: 'drawAxes',
-
-
-    /**
-     * 画坐标轴
-     * @param  {Scene} scene 场景
-     * @param  {Number} x    x 轴长度
-     * @param  {Number} y    y 轴长度
-     * @param  {Number} z    z 轴长度
-     */
-    value: function drawAxes(scene) {
-      var x = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 100;
-      var y = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 100;
-      var z = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 100;
-
-      // x-axis
-      var xGeo = new THREE.Geometry();
-      xGeo.vertices.push(new THREE.Vector3(0, 0, 0));
-      xGeo.vertices.push(new THREE.Vector3(x, 0, 0));
-      var xMat = new THREE.LineBasicMaterial({ color: 0xff0000 });
-      var xAxis = new THREE.Line(xGeo, xMat);
-      scene.add(xAxis);
-
-      // y-axis
-      var yGeo = new THREE.Geometry();
-      yGeo.vertices.push(new THREE.Vector3(0, 0, 0));
-      yGeo.vertices.push(new THREE.Vector3(0, y, 0));
-      var yMat = new THREE.LineBasicMaterial({ color: 0x00ff00 });
-      var yAxis = new THREE.Line(yGeo, yMat);
-      scene.add(yAxis);
-
-      // z-axis
-      var zGeo = new THREE.Geometry();
-      zGeo.vertices.push(new THREE.Vector3(0, 0, 0));
-      zGeo.vertices.push(new THREE.Vector3(0, 0, z));
-      var zMat = new THREE.LineBasicMaterial({ color: 0xffff00 });
-      var zAxis = new THREE.Line(zGeo, zMat);
-      scene.add(zAxis);
-    }
-  }]);
-
-  return Axes;
-}();
-
-exports.default = Axes;
-
-/***/ }),
-/* 2 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -43461,7 +43366,103 @@ function CanvasRenderer() {
 
 
 /***/ }),
+/* 1 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(11);
+if(typeof content === 'string') content = [[module.i, content, '']];
+// add the styles to the DOM
+var update = __webpack_require__(4)(content, {});
+if(content.locals) module.exports = content.locals;
+// Hot Module Replacement
+if(false) {
+	// When the styles change, update the <style> tags
+	if(!content.locals) {
+		module.hot.accept("!!../node_modules/css-loader/index.js!../node_modules/.6.0.3@sass-loader/lib/loader.js!./index.scss", function() {
+			var newContent = require("!!../node_modules/css-loader/index.js!../node_modules/.6.0.3@sass-loader/lib/loader.js!./index.scss");
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+			update(newContent);
+		});
+	}
+	// When the module is disposed, remove the <style> tags
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 2 */,
 /* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var THREE = __webpack_require__(0);
+
+var Axes = function () {
+  function Axes() {
+    _classCallCheck(this, Axes);
+  }
+
+  _createClass(Axes, null, [{
+    key: 'drawAxes',
+
+
+    /**
+     * 画坐标轴
+     * @param  {Scene} scene 场景
+     * @param  {Number} x    x 轴长度
+     * @param  {Number} y    y 轴长度
+     * @param  {Number} z    z 轴长度
+     */
+    value: function drawAxes(scene) {
+      var x = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 100;
+      var y = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 100;
+      var z = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 100;
+
+      // x-axis
+      var xGeo = new THREE.Geometry();
+      xGeo.vertices.push(new THREE.Vector3(0, 0, 0));
+      xGeo.vertices.push(new THREE.Vector3(x, 0, 0));
+      var xMat = new THREE.LineBasicMaterial({ color: 0xff0000 });
+      var xAxis = new THREE.Line(xGeo, xMat);
+      scene.add(xAxis);
+
+      // y-axis
+      var yGeo = new THREE.Geometry();
+      yGeo.vertices.push(new THREE.Vector3(0, 0, 0));
+      yGeo.vertices.push(new THREE.Vector3(0, y, 0));
+      var yMat = new THREE.LineBasicMaterial({ color: 0x00ff00 });
+      var yAxis = new THREE.Line(yGeo, yMat);
+      scene.add(yAxis);
+
+      // z-axis
+      var zGeo = new THREE.Geometry();
+      zGeo.vertices.push(new THREE.Vector3(0, 0, 0));
+      zGeo.vertices.push(new THREE.Vector3(0, 0, z));
+      var zMat = new THREE.LineBasicMaterial({ color: 0xffff00 });
+      var zAxis = new THREE.Line(zGeo, zMat);
+      scene.add(zAxis);
+    }
+  }]);
+
+  return Axes;
+}();
+
+exports.default = Axes;
+
+/***/ }),
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -43493,7 +43494,7 @@ var stylesInDom = {},
 	singletonElement = null,
 	singletonCounter = 0,
 	styleElementsInsertedAtTop = [],
-	fixUrls = __webpack_require__(4);
+	fixUrls = __webpack_require__(5);
 
 module.exports = function(list, options) {
 	if(typeof DEBUG !== "undefined" && DEBUG) {
@@ -43752,7 +43753,7 @@ function updateLink(linkElement, options, obj) {
 
 
 /***/ }),
-/* 4 */
+/* 5 */
 /***/ (function(module, exports) {
 
 
@@ -43847,7 +43848,7 @@ module.exports = function (css) {
 
 
 /***/ }),
-/* 5 */
+/* 6 */
 /***/ (function(module, exports) {
 
 var toString = {}.toString;
@@ -43858,7 +43859,7 @@ module.exports = Array.isArray || function (arr) {
 
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, exports) {
 
 exports.read = function (buffer, offset, isLE, mLen, nBytes) {
@@ -43948,7 +43949,7 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
 
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -44069,7 +44070,7 @@ function fromByteArray (uint8) {
 
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports) {
 
 var g;
@@ -44096,7 +44097,7 @@ module.exports = g;
 
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -44110,9 +44111,9 @@ module.exports = g;
 
 
 
-var base64 = __webpack_require__(7)
-var ieee754 = __webpack_require__(6)
-var isArray = __webpack_require__(5)
+var base64 = __webpack_require__(8)
+var ieee754 = __webpack_require__(7)
+var isArray = __webpack_require__(6)
 
 exports.Buffer = Buffer
 exports.SlowBuffer = SlowBuffer
@@ -45890,13 +45891,13 @@ function isnan (val) {
   return val !== val // eslint-disable-line no-self-compare
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(9)))
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(11)(undefined);
+exports = module.exports = __webpack_require__(12)(undefined);
 // imports
 
 
@@ -45907,7 +45908,7 @@ exports.push([module.i, "body {\n  margin: 0; }\n", ""]);
 
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(Buffer) {/*
@@ -45986,32 +45987,26 @@ function toComment(sourceMap) {
   return '/*# ' + data + ' */';
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(9).Buffer))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10).Buffer))
 
 /***/ }),
-/* 12 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-__webpack_require__(0);
+__webpack_require__(1);
 
-var _Axes = __webpack_require__(1);
+var _Axes = __webpack_require__(3);
 
 var _Axes2 = _interopRequireDefault(_Axes);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var THREE = __webpack_require__(2);
+var THREE = __webpack_require__(0);
 
 var init = function init() {
-  // renderer
-  var renderer = new THREE.WebGLRenderer();
-  renderer.setSize(window.innerWidth, window.innerHeight);
-  renderer.setClearColor(0x000000);
-  renderer.shadowMap.enabled = true;
-  document.body.appendChild(renderer.domElement);
 
   // scene
   var scene = new THREE.Scene();
@@ -46019,63 +46014,90 @@ var init = function init() {
   // camera
   // const camera = new THREE.OrthographicCamera(-100, 100, 75, -75, 0.1, 200);
   var camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
-  camera.position.set(120, 50, 100);
+  camera.position.set(100, 60, 120);
   camera.lookAt(new THREE.Vector3(0, 0, 0));
   scene.add(camera);
 
   // draw axes to help you understand the coordinate
   _Axes2.default.drawAxes(scene);
 
-  // 材质
+  // 光源
+  var ambientLight = new THREE.AmbientLight(0x333333);
+  scene.add(ambientLight);
+
+  var light = new THREE.DirectionalLight(0xaaaaaa);
+  light.position.set(-200, 400, 500);
+  light.castShadow = true;
+
+  light.shadow.mapSize.width = 512;
+  light.shadow.mapSize.heigh = 512;
+  light.shadow.camera.left = -90;
+  light.shadow.camera.right = 90;
+  light.shadow.camera.top = 50;
+  light.shadow.camera.bottom = -90;
+  light.shadow.camera.near = 0.5;
+  light.shadow.camera.far = 1000;
+
+  scene.add(light);
+
+  // 小车材质
   var material = new THREE.MeshLambertMaterial({
-    color: 0x999999
+    color: 0xffff00
   });
 
   // 车体
   var carBody = new THREE.BoxGeometry(80, 50, 50, 10, 10, 5);
   var carBodyWithMaterial = new THREE.Mesh(carBody, material);
-  carBodyWithMaterial.castShadow = true; //default is false
+  carBodyWithMaterial.castShadow = true;
   scene.add(carBodyWithMaterial);
 
   // 轮子
   var wheel = new THREE.TorusGeometry(8, 3, 10, 20);
   var wheelWithMaterial = new THREE.Mesh(wheel, material);
   wheelWithMaterial.position.set(-25, -25, 25);
-  wheelWithMaterial.castShadow = true; //default is false
+  wheelWithMaterial.castShadow = true;
   scene.add(wheelWithMaterial);
 
   var wheel2 = new THREE.TorusGeometry(8, 3, 10, 20);
   var wheel2WithMaterial = new THREE.Mesh(wheel2, material);
   wheel2WithMaterial.position.set(-25, -25, -25);
-  wheel2WithMaterial.castShadow = true; //default is false
+  wheel2WithMaterial.castShadow = true;
   scene.add(wheel2WithMaterial);
 
   var wheel3 = new THREE.TorusGeometry(8, 3, 10, 20);
   var wheel3WithMaterial = new THREE.Mesh(wheel3, material);
   wheel3WithMaterial.position.set(25, -25, -25);
-  wheel3WithMaterial.castShadow = true; //default is false
+  wheel3WithMaterial.castShadow = true;
   scene.add(wheel3WithMaterial);
 
   var wheel4 = new THREE.TorusGeometry(8, 3, 10, 20);
   var wheel4WithMaterial = new THREE.Mesh(wheel4, material);
   wheel4WithMaterial.position.set(25, -25, 25);
-  wheel4WithMaterial.castShadow = true; //default is false
+  wheel4WithMaterial.castShadow = true;
   scene.add(wheel4WithMaterial);
 
-  // 地平面
-  var ground = new THREE.PlaneGeometry(300, 300);
-  var groundWithMaterial = new THREE.Mesh(ground, material);
-  groundWithMaterial.rotation.x = -Math.PI / 2;
-  groundWithMaterial.position.y = -33.5;
-  ground.receiveShadow = true;
-  scene.add(groundWithMaterial);
+  var planeGeometry = new THREE.PlaneGeometry(240, 240);
+  var planeMaterial = new THREE.MeshLambertMaterial({
+    color: 0x9bb975,
+    side: THREE.DoubleSide
+  });
+  var plane = new THREE.Mesh(planeGeometry, planeMaterial);
+  plane.rotation.x = -Math.PI / 2;
+  plane.position.y = -36;
+  plane.receiveShadow = true;
+  scene.add(plane);
 
-  // 光源
-  var light = new THREE.DirectionalLight();
-  light.position.set(2, 5, 3);
-  scene.add(light);
+  //Create a helper for the shadow camera (optional)
+  var helper = new THREE.CameraHelper(light.shadow.camera);
+  scene.add(helper);
 
+  // renderer
+  var renderer = new THREE.WebGLRenderer();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.shadowMap.enabled = true;
+  renderer.shadowMap.type = THREE.PCFSoftShadowMap; // default THREE.PCFShadowMap
   renderer.render(scene, camera);
+  document.body.appendChild(renderer.domElement);
 };
 
 init();
