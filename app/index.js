@@ -6,28 +6,40 @@ const TrackballControls = require('three-trackballcontrols');
 
 let scene,
   camera,
-  renderer;
+  renderer,
+  controls;
 
+/**
+ * init
+ */
 const init = () => {
+
+  // renderer
+  renderer = new THREE.WebGLRenderer();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.shadowMap.enabled = true;
+  renderer.shadowMap.type = THREE.PCFSoftShadowMap; // default THREE.PCFShadowMap
+  document.body.appendChild(renderer.domElement);
 
   // scene
   scene = new THREE.Scene();
 
   // camera
-  // const camera = new THREE.OrthographicCamera(-100, 100, 75, -75, 0.1, 200);
   camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 2000);
   camera.position.set(200, 120, 240);
   camera.lookAt(new THREE.Vector3(0, 0, 0));
 
-  const controls = new TrackballControls(camera);
-
+  // controls
+  controls = new TrackballControls(camera);
+  controls.minDistance = 0.1; //控制缩放的范围
+  controls.maxDistance = 1500;
   controls.addEventListener('change', render);
 
   // draw axes to help you understand the coordinate
   Axes.drawAxes(scene);
 
   // 光源
-  var ambientLight = new THREE.AmbientLight(0x333333);
+  const ambientLight = new THREE.AmbientLight(0x555555);
   scene.add(ambientLight);
 
   const light = new THREE.DirectionalLight(0xdddddd);
@@ -38,26 +50,24 @@ const init = () => {
   light.shadow.mapSize.heigh = 512;
   light.shadow.camera.left = -90;
   light.shadow.camera.right = 90;
-  light.shadow.camera.top = 50;
-  light.shadow.camera.bottom = -90;
+  light.shadow.camera.top = 60;
+  light.shadow.camera.bottom = -60;
   light.shadow.camera.near = 0.5;
   light.shadow.camera.far = 1000;
-
   scene.add(light);
 
-  // load a texture, set wrap mode to repeat
-  var loader = new THREE.TextureLoader();
-  //allow cross origin loading
+  // 纹理
+  const loader = new THREE.TextureLoader();
+  // allow cross origin loading
   loader.crossOrigin = '';
-
-  // var texture = loader.load('./assets/qrcode.png',()=>{
-  var carTexture = loader.load('https://img.alicdn.com/tfs/TB1zLjDQXXXXXbfaXXXXXXXXXXX-64-64.png', () => {
+  // const texture = loader.load('./assets/qrcode.png',()=>{
+  const carTexture = loader.load('https://img.alicdn.com/tfs/TB1zLjDQXXXXXbfaXXXXXXXXXXX-64-64.png', () => {
     renderer.render(scene, camera);
   });
   const wheelTexture = loader.load('https://img.alicdn.com/tfs/TB1Uv69QXXXXXaEXpXXXXXXXXXX-600-600.png', () => {
     renderer.render(scene, camera);
   });
-  var roadTexture = loader.load('https://img.alicdn.com/tfs/TB19aLQQXXXXXazXVXXXXXXXXXX-150-150.png', () => {
+  const roadTexture = loader.load('https://img.alicdn.com/tfs/TB19aLQQXXXXXazXVXXXXXXXXXX-150-150.png', () => {
     renderer.render(scene, camera);
   });
   roadTexture.wrapS = THREE.RepeatWrapping;
@@ -108,9 +118,7 @@ const init = () => {
 
   const planeGeometry = new THREE.PlaneGeometry(240, 240);
   const planeMaterial = new THREE.MeshLambertMaterial({
-    color: 0x9bb975,
-    // side: THREE.DoubleSide,
-    map: roadTexture
+    color: 0x9bb975, side: THREE.DoubleSide, map: roadTexture
     // wireframe: true
   });
   const plane = new THREE.Mesh(planeGeometry, planeMaterial);
@@ -119,22 +127,22 @@ const init = () => {
   plane.receiveShadow = true;
   scene.add(plane);
 
-  //Create a helper for the shadow camera (optional)
-  // var helper = new THREE.CameraHelper( light.shadow.camera );
-  // scene.add( helper );
+  // Create a helper for the shadow camera (optional)
+  const helper = new THREE.CameraHelper(light.shadow.camera);
+  scene.add(helper);
 
-  // renderer
-  renderer = new THREE.WebGLRenderer();
-  renderer.setSize(window.innerWidth, window.innerHeight);
-  renderer.shadowMap.enabled = true;
-  renderer.shadowMap.type = THREE.PCFSoftShadowMap; // default THREE.PCFShadowMap
-  renderer.render(scene, camera);
-  document.body.appendChild(renderer.domElement);
+  render();
 };
 
-function render() {
+const animate = () => {
+  requestAnimationFrame(animate);
+  controls.update();
+}
+
+const render = () => {
   renderer.render(scene, camera);
   // stats.update();
 }
 
 init();
+animate();
