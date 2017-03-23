@@ -3,11 +3,13 @@ import Axes from './Axes';
 
 const THREE = require('three');
 const TrackballControls = require('three-trackballcontrols');
+const Stats = require('stats-js');
 
 let scene,
   camera,
   renderer,
-  controls;
+  controls,
+  stats;
 
 /**
  * init
@@ -131,6 +133,14 @@ const init = () => {
   const helper = new THREE.CameraHelper(light.shadow.camera);
   scene.add(helper);
 
+  // 性能测试
+  stats = new Stats();
+  stats.domElement.style.position = 'fixed';
+  stats.domElement.style.left = '0px';
+  stats.domElement.style.top = '0px';
+  stats.setMode(0); // 0: fps, 1: ms,
+  document.body.appendChild(stats.domElement);
+
   render();
 };
 
@@ -141,7 +151,7 @@ const animate = () => {
 
 const render = () => {
   renderer.render(scene, camera);
-  // stats.update();
+  stats.update();
 };
 
 init();

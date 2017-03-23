@@ -12,6 +12,7 @@
   "author": "HyG",
   "license": "MIT",
   "dependencies": {
+    "stats-js": "^1.0.0-alpha1",
     "three": "^0.84.0",
     "three-trackballcontrols": "0.0.5"
   },
