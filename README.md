@@ -10,3 +10,4 @@ webpack2 + babel + es6
 
 - [myFirstCar](https://gaohaoyang.github.io/threejs-practice/demo/1-myFirst-Car/)
 - [light and shadow](https://gaohaoyang.github.io/threejs-practice/demo/2-light-shadow/)
+- [material and texture](https://gaohaoyang.github.io/threejs-practice/demo/3-material-texture/)
