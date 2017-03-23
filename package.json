@@ -12,7 +12,9 @@
   "author": "HyG",
   "license": "MIT",
   "dependencies": {
-    "three": "^0.84.0"
+    "three": "^0.84.0",
+    "three-orthographic-trackball-controls": "^79.0.1",
+    "three-trackballcontrols": "0.0.5"
   },
   "devDependencies": {
     "babel-core": "^6.24.0",

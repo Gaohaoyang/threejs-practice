@@ -2,18 +2,26 @@ import './index.scss';
 import Axes from './Axes';
 
 const THREE = require('three');
+const TrackballControls = require('three-trackballcontrols');
+
+let scene,
+  camera,
+  renderer;
 
 const init = () => {
 
   // scene
-  const scene = new THREE.Scene();
+  scene = new THREE.Scene();
 
   // camera
   // const camera = new THREE.OrthographicCamera(-100, 100, 75, -75, 0.1, 200);
-  const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 2000);
+  camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 2000);
   camera.position.set(200, 120, 240);
   camera.lookAt(new THREE.Vector3(0, 0, 0));
-  scene.add(camera);
+
+  const controls = new TrackballControls(camera);
+
+  controls.addEventListener('change', render);
 
   // draw axes to help you understand the coordinate
   Axes.drawAxes(scene);
@@ -116,12 +124,17 @@ const init = () => {
   // scene.add( helper );
 
   // renderer
-  const renderer = new THREE.WebGLRenderer();
+  renderer = new THREE.WebGLRenderer();
   renderer.setSize(window.innerWidth, window.innerHeight);
   renderer.shadowMap.enabled = true;
   renderer.shadowMap.type = THREE.PCFSoftShadowMap; // default THREE.PCFShadowMap
   renderer.render(scene, camera);
   document.body.appendChild(renderer.domElement);
 };
+
+function render() {
+  renderer.render(scene, camera);
+  // stats.update();
+}
 
 init();
