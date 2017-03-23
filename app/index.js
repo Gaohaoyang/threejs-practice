@@ -137,12 +137,12 @@ const init = () => {
 const animate = () => {
   requestAnimationFrame(animate);
   controls.update();
-}
+};
 
 const render = () => {
   renderer.render(scene, camera);
   // stats.update();
-}
+};
 
 init();
 animate();
