@@ -2,6 +2,15 @@ const path = require('path')
 const glob = require('glob')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
+const generateHtmlPlugins = () =>
+  glob.sync('./src/**/index.html').map(
+    (item) =>
+      new HtmlWebpackPlugin({
+        template: item,
+        filename: `./${item.replace('/src', '').replace('./', '')}`,
+      })
+  )
+
 module.exports = {
   entry: glob.sync('./src/**/index.js').reduce((acc, path) => {
     const entry = path.replace('/index.js', '').replace('/src', '')
@@ -40,5 +49,5 @@ module.exports = {
       // },
     ],
   },
-  // plugins: [new HtmlWebpackPlugin()],
+  plugins: [...generateHtmlPlugins()],
 }
