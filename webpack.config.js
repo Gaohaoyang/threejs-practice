@@ -8,6 +8,7 @@ const generateHtmlPlugins = () =>
       new HtmlWebpackPlugin({
         template: item,
         filename: `./${item.replace('/src', '').replace('./', '')}`,
+        inject: false,
       })
   )
 
@@ -18,7 +19,7 @@ module.exports = {
     return acc
   }, {}),
   output: {
-    filename: './[name]/main.js',
+    filename: './[name]/index.js',
     path: path.resolve(__dirname, 'demo'),
   },
   module: {
