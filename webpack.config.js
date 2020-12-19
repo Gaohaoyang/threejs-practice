@@ -9,6 +9,10 @@ const generateHtmlPlugins = () =>
         template: item,
         filename: `./${item.replace('/src', '').replace('./', '')}`,
         inject: false,
+        templateParameters: {
+          ppp: 'hello',
+          path: `.${item.replace('/src', '').replace('.html', '.js')}`,
+        },
       })
   )
 
@@ -51,4 +55,9 @@ module.exports = {
     ],
   },
   plugins: [...generateHtmlPlugins()],
+  // mode: 'development',
+  devServer: {
+    contentBase: './demo',
+    open: true,
+  },
 }
