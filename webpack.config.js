@@ -55,7 +55,7 @@ module.exports = {
     ],
   },
   plugins: [...generateHtmlPlugins()],
-  // mode: 'development',
+  mode: 'development',
   devServer: {
     contentBase: './demo',
     open: true,
