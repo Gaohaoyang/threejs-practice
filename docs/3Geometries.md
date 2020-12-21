@@ -153,3 +153,80 @@ const geometry = new THREE.TorusGeometry(2, 0.4, 8, 16)
 ```
 
 ![](https://gw.alicdn.com/imgextra/i1/O1CN015mK4fa1hjrH4SUVnr_!!6000000004314-2-tps-948-832.png)
+
+## 文字几何体 TextGeometry
+
+构造函数
+
+```js
+TextGeometry(text : String, parameters : Object)
+```
+
+- text — 将要显示的文本。
+- parameters — 包含有下列参数的对象：
+  - font — THREE.Font的实例。
+  - size — Float。字体大小，默认值为100。
+  - height — Float。挤出文本的厚度。默认值为50。
+  - curveSegments — Integer。（表示文本的）曲线上点的数量。默认值为12。
+  - bevelEnabled — Boolean。是否开启斜角，默认为false。
+  - bevelThickness — Float。文本上斜角的深度，默认值为20。
+  - bevelSize — Float。斜角与原始文本轮廓之间的延伸距离。默认值为8。
+  - bevelSegments — Integer。斜角的分段数。默认值为3。
+
+```js
+import * as THREE from 'three'
+// import typeface from './typeface.json'
+
+const width = 400
+const height = 300
+
+const renderer = new THREE.WebGLRenderer()
+renderer.setSize(width, height)
+document.body.appendChild(renderer.domElement)
+
+const scene = new THREE.Scene()
+
+const axesHelper = new THREE.AxesHelper(2.5)
+scene.add(axesHelper)
+
+const camera = new THREE.PerspectiveCamera(45, width / height, 1, 400)
+camera.position.set(8, 2, 8)
+camera.lookAt(new THREE.Vector3(3, 0, 0))
+scene.add(camera)
+
+const loader = new THREE.FontLoader()
+
+loader.load(
+  'https://raw.githubusercontent.com/mrdoob/three.js/master/examples/fonts/helvetiker_regular.typeface.json',
+  (font) => {
+    const geometry = new THREE.TextGeometry('Hello three.js!', {
+      font,
+      size: 1,
+      height: 0.5,
+      curveSegments: 4,
+    })
+
+    const material = new THREE.MeshBasicMaterial({
+      wireframe: true,
+    })
+    const textObj = new THREE.Mesh(geometry, material)
+    scene.add(textObj)
+    renderer.render(scene, camera)
+  },
+)
+```
+
+![](https://gw.alicdn.com/imgextra/i4/O1CN01Y6Kcbc1KmqhHqx3BC_!!6000000001207-2-tps-934-824.png)
+
+## 自定义几何体 Geometry
+
+对于Three.js没有提供的形状，可以提供自定义形状来创建。
+
+由于自定义形状需要手动指定每个顶点位置，以及顶点连接情况，如果该形状非常复杂，程序员的计算量就会比较大。在这种情况下，建议在 3ds Max 之类的建模软件中创建模型，然后使用Three.js导入到场景中，这样会更高效方便。
+
+自定义形状使用的是Geometry类，它是其他如CubeGeometry、SphereGeometry等几何形状的父类，其构造函数是：
+
+```js
+THREE.Geometry()
+```
+

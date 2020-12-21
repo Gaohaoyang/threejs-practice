@@ -10,13 +10,13 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./src/3-geometries/index.js":
-/*!***********************************!*\
-  !*** ./src/3-geometries/index.js ***!
-  \***********************************/
+/***/ "./src/3-textGeometry/index.js":
+/*!*************************************!*\
+  !*** ./src/3-textGeometry/index.js ***!
+  \*************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var three__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! three */ \"./node_modules/_three@0.123.0@three/build/three.module.js\");\n\nvar width = 400;\nvar height = 300;\nvar renderer = new three__WEBPACK_IMPORTED_MODULE_0__.WebGLRenderer();\nrenderer.setSize(width, height);\ndocument.body.appendChild(renderer.domElement);\nvar scene = new three__WEBPACK_IMPORTED_MODULE_0__.Scene();\nvar axesHelper = new three__WEBPACK_IMPORTED_MODULE_0__.AxesHelper(3);\nscene.add(axesHelper);\nvar camera = new three__WEBPACK_IMPORTED_MODULE_0__.OrthographicCamera(-4, 4, 3, -3, 1, 100);\ncamera.position.set(5, 6, 7);\ncamera.lookAt(new three__WEBPACK_IMPORTED_MODULE_0__.Vector3(0, 0, 0));\nscene.add(camera); // const geometry = new THREE.BoxGeometry(1, 2, 3, 3, 3, 3)\n// const geometry = new THREE.PlaneGeometry(3, 4)\n// const geometry = new THREE.SphereGeometry(2, 8, 8)\n// const geometry = new THREE.CircleGeometry(2, 28)\n// const geometry = new THREE.CylinderGeometry(2, 2, 3, 16, 8)\n\nvar geometry = new three__WEBPACK_IMPORTED_MODULE_0__.TorusGeometry(2, 0.4, 8, 16);\nvar material = new three__WEBPACK_IMPORTED_MODULE_0__.MeshBasicMaterial({\n  wireframe: true\n});\nvar cube = new three__WEBPACK_IMPORTED_MODULE_0__.Mesh(geometry, material);\nscene.add(cube);\nrenderer.render(scene, camera);\n\n//# sourceURL=webpack://threejs-practice/./src/3-geometries/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var three__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! three */ \"./node_modules/_three@0.123.0@three/build/three.module.js\");\n // import typeface from './typeface.json'\n\nvar width = 400;\nvar height = 300;\nvar renderer = new three__WEBPACK_IMPORTED_MODULE_0__.WebGLRenderer();\nrenderer.setSize(width, height);\ndocument.body.appendChild(renderer.domElement);\nvar scene = new three__WEBPACK_IMPORTED_MODULE_0__.Scene();\nvar axesHelper = new three__WEBPACK_IMPORTED_MODULE_0__.AxesHelper(2.5);\nscene.add(axesHelper);\nvar camera = new three__WEBPACK_IMPORTED_MODULE_0__.PerspectiveCamera(45, width / height, 1, 400);\ncamera.position.set(8, 2, 8);\ncamera.lookAt(new three__WEBPACK_IMPORTED_MODULE_0__.Vector3(3, 0, 0));\nscene.add(camera);\nvar loader = new three__WEBPACK_IMPORTED_MODULE_0__.FontLoader();\nloader.load('https://raw.githubusercontent.com/mrdoob/three.js/master/examples/fonts/helvetiker_regular.typeface.json', function (font) {\n  var geometry = new three__WEBPACK_IMPORTED_MODULE_0__.TextGeometry('Hello three.js!', {\n    font: font,\n    size: 1,\n    height: 0.5,\n    curveSegments: 4\n  });\n  var material = new three__WEBPACK_IMPORTED_MODULE_0__.MeshBasicMaterial({\n    wireframe: true\n  });\n  var textObj = new three__WEBPACK_IMPORTED_MODULE_0__.Mesh(geometry, material);\n  scene.add(textObj);\n  renderer.render(scene, camera);\n});\n\n//# sourceURL=webpack://threejs-practice/./src/3-textGeometry/index.js?");
 
 /***/ }),
 
@@ -87,7 +87,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /************************************************************************/
 /******/ 	// startup
 /******/ 	// Load entry module
-/******/ 	__webpack_require__("./src/3-geometries/index.js");
+/******/ 	__webpack_require__("./src/3-textGeometry/index.js");
 /******/ 	// This entry module used 'exports' so it can't be inlined
 /******/ })()
 ;
