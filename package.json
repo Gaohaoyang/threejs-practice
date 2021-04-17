@@ -6,7 +6,9 @@
   "scripts": {
     "start": "webpack && webpack serve",
     "build": "webpack",
-    "eslint-init": "eslint --init"
+    "eslint-init": "eslint --init",
+    "deploy": "gh-pages -d demo",
+    "pub": "yarn build && yarn deploy"
   },
   "keywords": [
     "three.js"
@@ -26,6 +28,7 @@
     "eslint": "^7.16.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.22.1",
+    "gh-pages": "^3.1.0",
     "glob": "^7.1.6",
     "html-webpack-plugin": "^5.0.0-beta.1",
     "webpack": "^5.11.0",
