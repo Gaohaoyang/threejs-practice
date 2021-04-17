@@ -1,6 +1,8 @@
+本系列将入门 Three.js 并通过丰富的示例带领大家一起学习。
+
 ## 开始使用 Three.js
 
-一个典型的 Three.js 程序至少要包括 **渲染器（Renderer）、场景（Scene）、照相机（Camera）**，以及你在场景中创建的物体。
+一个典型的 Three.js 程序至少要包括 **渲染器（Renderer）、场景（Scene）、照相机（Camera）**，以及你在场景中创建的**物体**。
 
 
 ### 渲染器（Renderer）

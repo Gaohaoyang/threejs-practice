@@ -2,24 +2,22 @@ const path = require('path')
 const glob = require('glob')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
-const generateHtmlPlugins = () =>
-  glob.sync('./src/**/index.html').map(
-    (item) =>
-      new HtmlWebpackPlugin({
-        template: item,
-        filename: `./${item.replace('/src', '').replace('./', '')}`,
-        inject: false,
-        templateParameters: {
-          ppp: 'hello',
-          path: `.${item.replace('/src', '').replace('.html', '.js')}`,
-        },
-      })
-  )
+const generateHtmlPlugins = () => glob.sync('./src/**/index.html').map(
+  (item) => new HtmlWebpackPlugin({
+    template: item,
+    filename: `./${item.replace('/src', '').replace('./', '')}`,
+    inject: false,
+    templateParameters: {
+      ppp: 'hello',
+      path: `.${item.replace('/src', '').replace('.html', '.js')}`,
+    },
+  }),
+)
 
 module.exports = {
-  entry: glob.sync('./src/**/index.js').reduce((acc, path) => {
-    const entry = path.replace('/index.js', '').replace('/src', '')
-    acc[entry] = path
+  entry: glob.sync('./src/**/index.js').reduce((acc, filePath) => {
+    const entry = filePath.replace('/index.js', '').replace('/src', '')
+    acc[entry] = filePath
     return acc
   }, {}),
   output: {
