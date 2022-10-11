@@ -4,6 +4,12 @@
 
 一个典型的 Three.js 程序至少要包括 **渲染器（Renderer）、场景（Scene）、照相机（Camera）**，以及你在场景中创建的**物体**。
 
+大致步骤如下
+
+1. 创建渲染器（可以理解为画布）
+2. 创建场景
+3. 创建相机和物体，并加入到场景中
+4. 使用渲染器渲染场景
 
 ### 渲染器（Renderer）
 
@@ -16,6 +22,7 @@
 ```js
 import * as THREE from 'three'
 
+// 创建渲染器
 const renderer = new THREE.WebGLRenderer({
   canvas: document.getElementById('mainCanvas'),
 })
@@ -35,9 +42,15 @@ document.body.appendChild(renderer.domElement)
 
 效果同上
 
+至此我们的画布（渲染器Renderer）就创建好了
+
 ### 场景（Scene）
 
 在 Three.js 中添加的物体都是添加到场景中的，因此它相当于一个大容器。一般说，场景里没有很复杂的操作，在程序最开始的时候进行实例化，然后将物体添加到场景中即可。
+
+```js
+const scene = new THREE.Scene() // 创建场景
+```
 
 ### 照相机（Camera）
 
@@ -45,12 +58,12 @@ document.body.appendChild(renderer.domElement)
 
 ![](https://gw.alicdn.com/imgextra/i1/O1CN01prOehi1WIsA9zszfs_!!6000000002766-2-tps-411-473.png)
 
-这里，我们定义了一个透视投影的照相机
+这里，我们定义了一个透视投影的照相机，这里暂时不理解也没关系，后续会详细将相机
 
 ```js
 const camera = new THREE.PerspectiveCamera(45, 4 / 3, 1, 1000)
 camera.position.set(0, 0, 5)
-scene.add(camera)
+scene.add(camera) // 相机加入场景
 ```
 
 照相机也需要被添加到场景中
@@ -67,10 +80,10 @@ const cube = new THREE.Mesh(
   }),
 )
 
-scene.add(cube)
+scene.add(cube) // 添加到场景中
 ```
 
-这段代码也是比较容易理解的，虽然你现在可能还不知道MeshBasicMaterial是什么，但是大致可以猜测出这是一种材质，可以用来设置物体的颜色。还是要提醒下，一定要记得把创建好的长方体添加到场景中。
+这段代码也是比较容易理解的，虽然你现在可能还不知道 MeshBasicMaterial 是什么，但是大致可以猜测出这是一种材质，可以用来设置物体的颜色。还是要提醒下，一定要记得把创建好的长方体添加到场景中。
 
 那么这里长度为1的单位是什么呢？这里的长度是在物体坐标系中的，其单位与屏幕分辨率等无关，简单地说，它就是一个虚拟空间的坐标系，1代表多少并没有实际的意义，而重要的是相对长度。
 
@@ -79,7 +92,7 @@ scene.add(cube)
 在定义了场景中的物体，设置好的照相机之后，渲染器就知道如何渲染出二维的结果了。这时候，我们只需要调用渲染器的渲染函数，就能使其渲染一次了。
 
 ```js
-renderer.render(scene, camera)
+renderer.render(scene, camera) // 使用渲染器渲染这个场景
 ```
 
 ### 完整代码

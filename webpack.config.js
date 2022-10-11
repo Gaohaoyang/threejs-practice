@@ -54,6 +54,9 @@ module.exports = {
   },
   plugins: [...generateHtmlPlugins()],
   mode: 'development',
+  resolve: {
+    extensions: ['.tsx', '.ts', '.js', '.jsx', 'mjs'],
+  },
   devServer: {
     contentBase: './demo',
     open: true,
